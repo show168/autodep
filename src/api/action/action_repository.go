@@ -96,15 +96,13 @@ func routineSearch(image *Image, ch chan string, ServerIP string) {
 	ch <- retTag
 }
 
-func ActionAllInfo(request common.RequestData) (code int,result string) {
+func ActionAllInfo(request common.RequestData) string {
 	ret_json := ActionRegList(request.ServerIP)
 
 	var repo Repository
 	err := json.Unmarshal([]byte(ret_json), &repo)
 	if err != nil {
 		logger.Println("json data decode faild :", err)
-		code=1;result="faild"
-		return code,result
 	}
 	logger.Println("Method ActionAllInfo Num_results : ", repo.Num_results)
 	ch := make(chan string, repo.Num_results)
@@ -115,10 +113,8 @@ func ActionAllInfo(request common.RequestData) (code int,result string) {
 	for i := 0; i < repo.Num_results; i++ {
 		v := <-ch
 		logger.Println("Received tag is ", i, v)
-		code=1;result="faild"
-		return code,result
 	}
 
 	rets, _ := json.Marshal(repo)
-	return 0,string(rets)
+	return string(rets)
 }

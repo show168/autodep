@@ -36,11 +36,15 @@ func API_V1(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var ret string
-                var code int=0
+	var code int = 0
 	switch strMethod {
 	case "fig/create":
 		{
-			code,ret = action.FigCreate(request)
+			code, ret = action.FigCreate(request)
+		}
+	case "fig/ps":
+		{
+			code, ret = action.FigPS(request)
 		}
 	case "fig/ps":
 		{
@@ -48,39 +52,39 @@ func API_V1(w http.ResponseWriter, r *http.Request) {
 		}
 	case "container/create":
 		{
-			code,ret = action.CreateContainer(request)
+			code, ret = action.CreateContainer(request)
 		}
 	case "container/inspect":
 		{
-			code,ret = action.InspectContainer(request)
+			code, ret = action.InspectContainer(request)
 		}
 	case "container/list":
 		{
-			code,ret = action.ListContainers(request)
+			code, ret = action.ListContainers(request)
 		}
 	case "container/changes":
 		{
-			code,ret = action.ContainerChanges(request)
+			code, ret = action.ContainerChanges(request)
 		}
 	case "container/stop":
 		{
-			code,ret = action.StopContainer(request)
+			code, ret = action.StopContainer(request)
 		}
 	case "container/restart":
 		{
-			code,ret = action.RestartContainer(request)
+			code, ret = action.RestartContainer(request)
 		}
 	case "container/pause":
 		{
-			code,ret = action.PauseContainer(request)
+			code, ret = action.PauseContainer(request)
 		}
 	case "container/unpause":
 		{
-			code,ret = action.UnpauseContainer(request)
+			code, ret = action.UnpauseContainer(request)
 		}
 	case "container/kill":
 		{
-			code,ret = action.KillContainer(request)
+			code, ret = action.KillContainer(request)
 		}
 	case "container/info":
 		{
@@ -92,7 +96,7 @@ func API_V1(w http.ResponseWriter, r *http.Request) {
 		}
 	case "image/list":
 		{
-			code,ret = action.ListImages(request)
+			code, ret = action.ListImages(request)
 		}
 	case "reg/list":
 		{
@@ -108,7 +112,7 @@ func API_V1(w http.ResponseWriter, r *http.Request) {
 		}
 	case "reg/info":
 		{
-			 code,ret = action.ActionAllInfo(request)
+			code, ret = action.ActionAllInfo(request)
 		}
 	case "machine/register":
 		{
